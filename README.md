@@ -13,8 +13,10 @@ La informacion debe mostrarse en una tabla de 2x2m ahora se muetra en 1x4
 
 Seccion newsletter:
 Alinear las imagenes de los pepes en la misma linea horizontal que el textbox de mail.
+Embeber formulario de substack. 
 
 Seccion Upcoming: Alinear al gato horizontalemtne en el mmedio. 
 
 Overall: 
 Que el movimiento entre #anchors sea smooth y no salte de seccion en seccion. 
+Centras las imagenes de fondo
