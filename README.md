@@ -19,4 +19,5 @@ Seccion Upcoming: Alinear al gato horizontalemtne en el mmedio.
 
 Overall: 
 Que el movimiento entre #anchors sea smooth y no salte de seccion en seccion. 
-Centras las imagenes de fondo
+Centrar las imagenes de fondo de cada seccion.
+Reajustar posiciones y tamaño en mobile. 
