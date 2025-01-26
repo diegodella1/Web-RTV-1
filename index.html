@@ -183,27 +183,44 @@ Because here's the truth: the traditional system is broken, and we're not here t
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter" aria-labelledby="newsletter-title" style="background-image: url('images/backnews.png'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-bottom: 0; position: relative;">
-        <div class="container" style="padding-bottom: 50px;">
+    <section class="newsletter" aria-labelledby="newsletter-title">
+        <div class="container">
             <h2 id="newsletter-title">Stay Updated</h2>
             <p class="newsletter-description">
                 Become an insider with the Roxom TV Newsletter—your bi-weekly pass to exclusive opinions, breaking Bitcoin news, and insider insights from the crypto world. Sign up now and stay ahead of the curve!
             </p>
-            <div class="newsletter-wrapper" style="display: flex; align-items: flex-end; justify-content: center; gap: 2rem; margin-top: 2rem; position: relative;">
-                <img src="images/pepe1.png" alt="Pepe 1" class="pepe-left" style="position: absolute; left: 0; bottom: -50px; max-width: 200px; height: auto;">
-                <div class="substack-embed" style="flex-shrink: 0;">
-                    <iframe 
-                        src="https://roxomtv.substack.com/embed" 
-                        width="480" 
-                        height="320" 
-                        style="border:1px solid #EEE; background:white;" 
-                        frameborder="0" 
-                        scrolling="no"
-                        sandbox="allow-scripts allow-same-origin allow-popups"
-                        loading="lazy"
-                    ></iframe>
-                </div>
-                <img src="images/pepe2.png" alt="Pepe 2" class="pepe-right" style="position: absolute; right: 0; bottom: -50px; max-width: 200px; height: auto;">
+            <div id="mc_embed_signup" class="newsletter-form">
+                <form action="https://roxom.us22.list-manage.com/subscribe/post?u=9db7d532f459f1003b456f6af&amp;id=11b201b127&amp;f_id=00cdc2e1f0" 
+                      method="post" 
+                      id="mc-embedded-subscribe-form" 
+                      name="mc-embedded-subscribe-form" 
+                      class="validate" 
+                      target="_self">
+                    <div class="form-group">
+                        <input type="email" 
+                               name="EMAIL" 
+                               class="newsletter-input required email" 
+                               id="mce-EMAIL" 
+                               placeholder="Enter your email address" 
+                               required>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" 
+                                   name="b_9db7d532f459f1003b456f6af_11b201b127" 
+                                   tabindex="-1" 
+                                   value="">
+                        </div>
+                        <input type="submit" 
+                               name="subscribe" 
+                               id="mc-embedded-subscribe" 
+                               class="btn btn-primary subscribe-btn" 
+                               value="Subscribe Now">
+                    </div>
+                </form>
+            </div>
+            <div class="newsletter-wrapper">
+                <img src="images/pepe1.png" alt="Pepe 1" class="pepe-left">
+                <img src="images/pepe2.png" alt="Pepe 2" class="pepe-right">
             </div>
         </div>
     </section>
