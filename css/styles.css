@@ -645,7 +645,7 @@ body {
 }
 
 .about .feature img {
-    filter: invert(80%) sepia(50%) saturate(500%) hue-rotate(100deg) brightness(100%) contrast(95%);
+    align-self: center;
 }
 
 .about .about-description {
