@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1ae784">
     <title>Roxom TV </title>
     
     <!-- Import Satoshi font -->
@@ -20,6 +21,103 @@
     
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-links {
+                display: none; /* We'll need JavaScript to handle a mobile menu */
+            }
+
+            /* Hero Section */
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Features Grid */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Show Section */
+            .show-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Stats Grid */
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            /* Clips Grid */
+            .clips-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Newsletter Section */
+            .newsletter-wrapper {
+                flex-direction: column;
+            }
+            .substack-embed iframe {
+                width: 100%;
+                max-width: 480px;
+            }
+            .pepe-left, .pepe-right {
+                display: none; /* Hide pepe images on mobile */
+            }
+
+            /* Calendar Section */
+            .calendar-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Social Menu */
+            .social-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .social-links {
+                justify-content: center;
+            }
+
+            /* General Container */
+            .container {
+                padding: 1rem;
+            }
+
+            /* Floating TV */
+            .floating-tv {
+                max-width: 200px;
+            }
+        }
+
+        /* Additional breakpoint for very small devices */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -28,6 +126,11 @@
             <a href="#" class="logo">
                 <img src="images/logoblanco1.png" alt="Roxom TV Logo" class="nav-logo">
             </a>
+            <button class="mobile-menu-button" aria-label="Toggle menu" style="display: none; @media (max-width: 768px) { display: block; }">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="#hero">Home</a>
                 <a href="#show">Show</a>
@@ -39,7 +142,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero" aria-labelledby="hero-title" style="background-image: url('images/backhero.png');">
+    <section id="hero" class="hero" aria-labelledby="hero-title" style="background-image: url('images/backhero.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="container hero-grid">
             <div class="player-container" aria-label="Live stream player">
                 <script src="https://snippet.univtec.com/js/embeb.js?0.5259335623804835" 
@@ -61,7 +164,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" aria-labelledby="about-title" style="background-image: url('images/backabout.png');">
+    <section id="about" class="about" aria-labelledby="about-title" style="background-image: url('images/backabout.png'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-bottom: 200px;">
         <div class="container">
             <h2 id="about-title">Who we are</h2>
             <p class="about-description">
@@ -71,18 +174,18 @@ Because here's the truth: the traditional system is broken, and we're not here t
 
             </p>
             <div class="features-grid">
-                <div class="feature">
-                    <img src="images/hd.png" alt="HD Quality">
+                <div class="feature" style="border-radius: 15px; overflow: hidden;">
+                    <img src="images/hd.png" alt="HD Quality" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto; filter: invert(83%) sepia(72%) saturate(1044%) hue-rotate(95deg) brightness(97%) contrast(98%);">
                     <h3>High Quality</h3>
                     <p>HD Streaming</p>
                 </div>
-                <div class="feature">
-                    <img src="images/live.png" alt="Live Content">
+                <div class="feature" style="border-radius: 15px; overflow: hidden;">
+                    <img src="images/live.png" alt="Live Content" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto; filter: invert(83%) sepia(72%) saturate(1044%) hue-rotate(95deg) brightness(97%) contrast(98%);">
                     <h3>Live Content</h3>
                     <p>24/7 Broadcasting</p>
                 </div>
-                <div class="feature">
-                    <img src="images/community.png" alt="Community">
+                <div class="feature" style="border-radius: 15px; overflow: hidden;">
+                    <img src="images/community.png" alt="Community" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto; filter: invert(83%) sepia(72%) saturate(1044%) hue-rotate(95deg) brightness(97%) contrast(98%);">
                     <h3>Community</h3>
                     <p>Join Our Network</p>
                 </div>
@@ -91,32 +194,34 @@ Because here's the truth: the traditional system is broken, and we're not here t
     </section>
 
     <!-- Imagen flotante entre secciones -->
-    <img src="images/tvroxom.png" alt="Roxom TV" class="floating-tv">
+    <div style="position: relative; margin-top: -150px; margin-bottom: -100px; z-index: 2; text-align: center;">
+        <img src="images/tvroxom.png" alt="Roxom TV" class="floating-tv" style="max-width: 300px; height: auto;">
+    </div>
 
     <!-- Show Info Section -->
-    <section id="show" class="show" style="background-image: url('images/backshow.png');">
+    <section id="show" class="show" style="background-image: url('images/backshow.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="container show-grid">
-            <div class="show-image">
-                <img src="images/pixelpepe.png" alt="Pixel Pepe" class="pixel-pepe">
-                <img src="images/showpic.png" alt="The Blockchain Report">
+            <div class="show-image" style="position: relative;">
+                <img src="images/showpic.png" alt="The Blockchain Report" style="position: relative; z-index: 1; width: 100%; height: auto;">
+                <img src="images/pixelpepe.png" alt="Pixel Pepe" class="pixel-pepe" style="position: absolute; bottom: 25%; left: 50%; transform: translate(-50%, 0); z-index: 2; max-width: 200px; height: auto;">
             </div>
             <div class="show-content">
                 <h2>The Blockchain Report</h2>
                 <p>Discover the best streaming content with us</p>
-                <div class="stats">
-                    <div class="stat-item">
+                <div class="stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                    <div class="stat-item" style="border: none; text-align: left; background: none;">
                         <span class="stat-number">100K+</span>
                         <span class="stat-label">Followers</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" style="border: none; text-align: left; background: none;">
                         <span class="stat-number">500+</span>
                         <span class="stat-label">Shows</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" style="border: none; text-align: left; background: none;">
                         <span class="stat-number">24/7</span>
                         <span class="stat-label">Available</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" style="border: none; text-align: left; background: none;">
                         <span class="stat-number">4K</span>
                         <span class="stat-label">Quality</span>
                     </div>
@@ -126,7 +231,7 @@ Because here's the truth: the traditional system is broken, and we're not here t
     </section>
 
     <!-- Clips Section -->
-    <section id="clips" class="clips" style="background-image: url('images/backclips.png');">
+    <section id="clips" class="clips" style="background-image: url('images/backclips.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="container">
             <h2>Featured Clips</h2>
             <div class="clips-grid">
@@ -176,15 +281,15 @@ Because here's the truth: the traditional system is broken, and we're not here t
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter" aria-labelledby="newsletter-title" style="background-image: url('images/backnews.png');">
-        <div class="container">
+    <section class="newsletter" aria-labelledby="newsletter-title" style="background-image: url('images/backnews.png'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-bottom: 0; position: relative;">
+        <div class="container" style="padding-bottom: 50px;">
             <h2 id="newsletter-title">Stay Updated</h2>
             <p class="newsletter-description">
                 Become an insider with the Roxom TV Newsletter—your bi-weekly pass to exclusive opinions, breaking Bitcoin news, and insider insights from the crypto world. Sign up now and stay ahead of the curve!
             </p>
-            <div class="newsletter-wrapper">
-                <img src="images/pepe1.png" alt="Pepe 1" class="pepe-left">
-                <div class="substack-embed">
+            <div class="newsletter-wrapper" style="display: flex; align-items: flex-end; justify-content: center; gap: 2rem; margin-top: 2rem; position: relative;">
+                <img src="images/pepe1.png" alt="Pepe 1" class="pepe-left" style="position: absolute; left: 0; bottom: -50px; max-width: 200px; height: auto;">
+                <div class="substack-embed" style="flex-shrink: 0;">
                     <iframe 
                         src="https://roxomtv.substack.com/embed" 
                         width="480" 
@@ -196,16 +301,16 @@ Because here's the truth: the traditional system is broken, and we're not here t
                         loading="lazy"
                     ></iframe>
                 </div>
-                <img src="images/pepe2.png" alt="Pepe 2" class="pepe-right">
+                <img src="images/pepe2.png" alt="Pepe 2" class="pepe-right" style="position: absolute; right: 0; bottom: -50px; max-width: 200px; height: auto;">
             </div>
         </div>
     </section>
 
     <!-- Calendar Section -->
-    <section id="calendar" class="calendar" aria-labelledby="calendar-title" style="background-image: url('images/backupcoming.png');">
+    <section id="calendar" class="calendar" aria-labelledby="calendar-title" style="background-image: url('images/backupcoming.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="container">
             <h2 id="calendar-title">Upcoming Shows</h2>
-            <div class="calendar-list">
+            <div class="calendar-list" style="position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
                 <div class="calendar-item" role="article">
                     <time class="date" datetime="2024-03-15">
                         <span class="day">15</span>
@@ -217,9 +322,22 @@ Because here's the truth: the traditional system is broken, and we're not here t
                     </div>
                     <button class="btn btn-reminder">Reminder</button>
                 </div>
-            </div>
-            <div class="calendar-cat">
-                <img src="images/cat.png" alt="Calendar Cat" class="cat-image">
+
+                <div class="calendar-item" role="article">
+                    <time class="date" datetime="2024-03-16">
+                        <span class="day">16</span>
+                        <span class="month">MAR</span>
+                    </time>
+                    <div class="event-info">
+                        <h3>Special Event</h3>
+                        <p>9:00 PM - 11:00 PM</p>
+                    </div>
+                    <button class="btn btn-reminder">Reminder</button>
+                </div>
+
+                <div class="calendar-cat" style="position: absolute; left: 50%; bottom: -80%; transform: translate(-50%, 0); z-index: 2; max-width: 200px;">
+                    <img src="images/cat.png" alt="Calendar Cat" class="cat-image" style="width: 100%; height: auto;">
+                </div>
             </div>
         </div>
     </section>
@@ -227,27 +345,27 @@ Because here's the truth: the traditional system is broken, and we're not here t
     <!-- Social Menu -->
     <div class="social-menu" role="navigation" aria-label="Social media links">
         <a href="https://linkedin.com/company/roxomtv" class="social-item" aria-label="Follow us on LinkedIn" target="_blank" rel="noopener noreferrer">
-            <img src="images/in.png" alt="@roxomtv on LinkedIn">
+            <img src="images/in.png" alt="@roxomtv on LinkedIn" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
         <a href="https://x.com/roxomtv" class="social-item" aria-label="Follow us on X (Twitter)" target="_blank" rel="noopener noreferrer">
-            <img src="images/x.png" alt="@roxomtv on X">
+            <img src="images/x.png" alt="@roxomtv on X" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
         <a href="https://instagram.com/roxomtv" class="social-item" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
-            <img src="images/ig.png" alt="@roxomtv on Instagram">
+            <img src="images/ig.png" alt="@roxomtv on Instagram" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
         <a href="https://twitch.tv/roxomtv" class="social-item" aria-label="Follow us on Twitch" target="_blank" rel="noopener noreferrer">
-            <img src="images/twitch.png" alt="@roxomtv on Twitch">
+            <img src="images/twitch.png" alt="@roxomtv on Twitch" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
         <a href="https://youtube.com/@roxomtv" class="social-item" aria-label="Follow us on YouTube" target="_blank" rel="noopener noreferrer">
-            <img src="images/yt.png" alt="@roxomtv on YouTube">
+            <img src="images/yt.png" alt="@roxomtv on YouTube" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
         <a href="https://rumble.com/c/roxomtv" class="social-item" aria-label="Follow us on Rumble" target="_blank" rel="noopener noreferrer">
-            <img src="images/rumble.png" alt="@roxomtv on Rumble">
+            <img src="images/rumble.png" alt="@roxomtv on Rumble" style="width: 32px; height: 32px; object-fit: contain;">
         </a>
     </div>
 
     <!-- Footer -->
-    <footer class="footer" role="contentinfo" style="background-image: url('images/footer.png');">
+    <footer class="footer" role="contentinfo" style="background-image: url('images/footer.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="container footer-grid">
             <div class="footer-col">
                 <img src="images/logoblanco1.png" alt="Roxom TV Logo" class="footer-logo">
@@ -263,23 +381,23 @@ Because here's the truth: the traditional system is broken, and we're not here t
             <div class="footer-col">
                 <h3>Follow Us</h3>
                 <div class="social-links">
-                    <a href="https://linkedin.com/company/roxomtv" aria-label="Follow us on LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <img src="images/in.png" alt="@roxomtv on LinkedIn">
+                    <a href="https://linkedin.com/company/roxomtv" aria-label="Follow us on LinkedIn" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/in.png" alt="@roxomtv on LinkedIn" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
-                    <a href="https://x.com/roxomtv" aria-label="Follow us on X (Twitter)" target="_blank" rel="noopener noreferrer">
-                        <img src="images/x.png" alt="@roxomtv on X">
+                    <a href="https://x.com/roxomtv" aria-label="Follow us on X (Twitter)" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/x.png" alt="@roxomtv on X" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
-                    <a href="https://instagram.com/roxomtv" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">
-                        <img src="images/ig.png" alt="@roxomtv on Instagram">
+                    <a href="https://instagram.com/roxomtv" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/ig.png" alt="@roxomtv on Instagram" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
-                    <a href="https://twitch.tv/roxomtv" aria-label="Follow us on Twitch" target="_blank" rel="noopener noreferrer">
-                        <img src="images/twitch.png" alt="@roxomtv on Twitch">
+                    <a href="https://twitch.tv/roxomtv" aria-label="Follow us on Twitch" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/twitch.png" alt="@roxomtv on Twitch" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
-                    <a href="https://youtube.com/@roxomtv" aria-label="Follow us on YouTube" target="_blank" rel="noopener noreferrer">
-                        <img src="images/yt.png" alt="@roxomtv on YouTube">
+                    <a href="https://youtube.com/@roxomtv" aria-label="Follow us on YouTube" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/yt.png" alt="@roxomtv on YouTube" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
-                    <a href="https://rumble.com/c/roxomtv" aria-label="Follow us on Rumble" target="_blank" rel="noopener noreferrer">
-                        <img src="images/rumble.png" alt="@roxomtv on Rumble">
+                    <a href="https://rumble.com/c/roxomtv" aria-label="Follow us on Rumble" target="_blank" rel="noopener noreferrer" style="background: none;">
+                        <img src="images/rumble.png" alt="@roxomtv on Rumble" style="width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%) invert(77%) sepia(71%) saturate(481%) hue-rotate(93deg) brightness(96%) contrast(88%);">
                     </a>
                 </div>
             </div>
