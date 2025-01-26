@@ -1302,8 +1302,8 @@ section > .container {
     padding: 0 1.5rem;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--color-text);
+    background: #FFFFFF;
+    color: #191919;
     font-size: 1.1rem;
     transition: var(--transition);
 }
@@ -1364,4 +1364,13 @@ section > .container {
         right: 50%;
         transform: translate(-50%, 50%);
     }
+}
+
+.floating-subscribe {
+    display: none;
+}
+
+/* Eliminar los estilos de .floating-subscribe */
+.floating-subscribe {
+    display: none;
 } 
