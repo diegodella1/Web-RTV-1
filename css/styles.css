@@ -1373,4 +1373,92 @@ section > .container {
 /* Eliminar los estilos de .floating-subscribe */
 .floating-subscribe {
     display: none;
+}
+
+/* Ajustes para resoluciones medias */
+@media screen and (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .show-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .clips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .floating-pepe {
+        width: 200px;
+        bottom: 15%;
+    }
+
+    .player-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* Ajustes cross-browser */
+.floating-pepe {
+    -webkit-animation: float 3s ease-in-out infinite;
+    -moz-animation: float 3s ease-in-out infinite;
+    -o-animation: float 3s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
+    -webkit-transform: translate(-50%, 50%);
+    -moz-transform: translate(-50%, 50%);
+    -ms-transform: translate(-50%, 50%);
+    transform: translate(-50%, 50%);
+}
+
+@-webkit-keyframes float {
+    0% { -webkit-transform: translate(-50%, 50%); }
+    50% { -webkit-transform: translate(-50%, calc(50% - 30px)); }
+    100% { -webkit-transform: translate(-50%, 50%); }
+}
+
+@-moz-keyframes float {
+    0% { -moz-transform: translate(-50%, 50%); }
+    50% { -moz-transform: translate(-50%, calc(50% - 30px)); }
+    100% { -moz-transform: translate(-50%, 50%); }
+}
+
+@-o-keyframes float {
+    0% { -o-transform: translate(-50%, 50%); }
+    50% { -o-transform: translate(-50%, calc(50% - 30px)); }
+    100% { -o-transform: translate(-50%, 50%); }
+}
+
+/* Ajustes de rendimiento */
+.floating-pepe,
+.floating-tv,
+.pixel-pepe {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Ajustes de compatibilidad para Firefox */
+@-moz-document url-prefix() {
+    .floating-pepe {
+        transform: translate(-50%, 50%) translateZ(0);
+    }
+}
+
+/* Ajustes para Safari */
+@media not all and (min-resolution:.001dpcm) { 
+    @supports (-webkit-appearance:none) {
+        .floating-pepe {
+            transform: translate3d(-50%, 50%, 0);
+        }
+    }
 } 
