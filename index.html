@@ -24,194 +24,6 @@
     
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        @keyframes float {
-            0% { transform: translateY(-50%); }
-            50% { transform: translateY(calc(-50% + 20px)); }
-            100% { transform: translateY(-50%); }
-        }
-        @media (min-width: 768px) {
-            .floating-lasers {
-                width: 230px !important;
-            }
-        }
-        @supports (-webkit-touch-callout: none) {
-            .hero, .clips, .footer {
-                background-attachment: scroll;
-            }
-        }
-        
-        /* Ajustes para iframes en móvil */
-        .clip-card iframe {
-            width: 100%;
-            aspect-ratio: 16/9;
-            max-width: 100%;
-            -webkit-aspect-ratio: 16/9;
-        }
-        
-        /* Ajustes para imágenes flotantes en móvil */
-        @media (max-width: 768px) {
-            .floating-pepe-hero,
-            .floating-lasers,
-            .floating-hands {
-                display: none;
-            }
-            
-            .floating-lasers {
-                right: 10px;
-            }
-            
-            .floating-hands {
-                right: 60px;
-                top: calc(50% - 150px);
-            }
-            
-            /* Ajuste de stats para móvil */
-            .stats {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            
-            .stat-item {
-                text-align: center;
-            }
-            
-            /* Ajuste de clips para móvil */
-            .clips-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .clip-content h3 {
-                font-size: 1rem;
-                line-height: 1.4;
-            }
-            
-            /* Ajuste del player para móvil */
-            .player-container {
-                height: auto;
-                max-height: 56.25vw; /* Mantiene proporción 16:9 */
-            }
-            
-            .player-container iframe {
-                height: 100%;
-                max-height: 56.25vw;
-            }
-            
-            /* Ajuste de pepepixel */
-            .pixel-pepe {
-                width: 50%;
-                height: auto;
-                transform: translateY(30px);
-            }
-            
-            /* Ajuste de TV flotante */
-            .floating-tv {
-                width: 25%;
-                height: auto;
-            }
-            
-            /* Ajuste de imagen del show para móvil */
-            .show-main-image {
-                width: 100% !important; /* Sobreescribe el 115% anterior */
-                aspect-ratio: 16/9;
-                object-fit: cover;
-            }
-            
-            /* Estilos del menú móvil */
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.95);
-                padding: 80px 20px;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 30px;
-                z-index: 1000;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links a {
-                font-size: 24px;
-                color: #fff;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-            
-            .nav-links a:hover {
-                color: #1ae784;
-            }
-            
-            .hamburger-menu {
-                display: block;
-                position: relative;
-                z-index: 1001;
-                border: none;
-                background: none;
-                cursor: pointer;
-                padding: 10px;
-            }
-            
-            .hamburger-menu span {
-                display: block;
-                width: 30px;
-                height: 3px;
-                margin: 6px 0;
-                background-color: #fff;
-                transition: all 0.3s ease;
-            }
-            
-            .hamburger-menu.active span:nth-child(1) {
-                transform: rotate(45deg) translate(7px, 7px);
-            }
-            
-            .hamburger-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger-menu.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-            
-            .show-content {
-                padding-left: 1rem;
-                margin-left: 1rem;
-                text-align: left;
-            }
-        }
-        
-        /* Fix para Safari */
-        @supports (-webkit-overflow-scrolling: touch) {
-            .hero-grid,
-            .show-grid,
-            .clips-grid {
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-        
-        /* Mejoras de rendimiento */
-        * {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        .show-content {
-            padding-left: 2rem;
-            margin-left: 2rem;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -283,24 +95,34 @@ We spark Bitcoin's rocket, amplify decentralization, and turn complexity into pu
                 <img src="images/pixelpepe.png" alt="Pixel Pepe" class="pixel-pepe">
             </div>
             <div class="show-content">
-                <h2>The Blockchain Report</h2>
-                <p>Discover the best streaming content with us</p>
+                <h2 style="font-size: 2.8rem;">The Blockchain Report</h2>
+                <p style="font-size: 1rem; font-weight: normal;">The Blockchain Report brings you the latest in blockchain and crypto news live every weekday at 8 AM PST | 4 PM UTC on Roxom TV. With bold commentary, exclusive interviews, and insights from expert columnists, it's where entertainment meets innovation. From market updates to deep dives, we make sense of crypto's fast-paced world.
+
+Don't just watch the revolution—be part of it.</p>
                 <div class="stats">
                     <div class="stat-item">
-                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Live</span>
-                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">M to F</span>
+                        <span class="stat-icon" style="display: block; text-align: center; margin-bottom: 10px; font-size: 36px;">
+                            🎥
+                        </span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1rem; font-weight: normal;">Live all weekdays at 8 AM PST with real-time updates</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">News</span>
-                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">24/7</span>
+                        <span class="stat-icon" style="display: block; text-align: center; margin-bottom: 10px; font-size: 36px;">
+                            🎙️
+                        </span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1rem; font-weight: normal;">Exclusive Interviews, market insights, and breaking news</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Available</span>
-                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">on demand</span>
+                        <span class="stat-icon" style="display: block; text-align: center; margin-bottom: 10px; font-size: 36px;">
+                            📊
+                        </span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1rem; font-weight: normal;">Deep dives into trends and crypto culture</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Global news</span>
-                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">and insider info</span>
+                        <span class="stat-icon" style="display: block; text-align: center; margin-bottom: 10px; font-size: 36px;">
+                            💡
+                        </span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1rem; font-weight: normal;">Informative, engaging, and straightforward</span>
                     </div>
                 </div>
             </div>

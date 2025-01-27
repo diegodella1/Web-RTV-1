@@ -170,22 +170,32 @@ body {
 }
 
 @media (max-width: 768px) {
-    .hero {
-        padding-top: 60px;
-        height: 100vh;
-    }
-
     .hero-grid {
-        height: 75vh;
+        height: auto;
+        min-height: auto;
+        padding: 100px 0 40px;
     }
 
     .player-container {
-        padding-bottom: 45%;
-        max-width: 100%;
+        width: 100%;
+        padding-bottom: 56.25%; /* Proporción 16:9 */
+        height: 0;
+        position: relative;
+        margin-bottom: 20px;
     }
 
     .player-container iframe {
-        transform: scale(1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero {
+        min-height: auto;
+        height: auto;
+        padding: 80px 0 40px;
     }
 
     .cta-buttons {
@@ -359,12 +369,12 @@ body {
 
 .pixel-pepe {
     position: absolute;
-    bottom: -25%;
+    bottom: -4%;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 2;
-    max-width: 200px;
-    height: auto;
+    max-width: auto;
+    height: 350px;
 }
 
 .show-content {
@@ -1673,5 +1683,201 @@ section > .container {
     
     .cta-buttons .btn-secondary {
         min-width: auto;
+    }
+}
+
+/* ========= Base & Animations ========= */
+@keyframes float {
+    0% { transform: translateY(-50%); }
+    50% { transform: translateY(calc(-50% + 20px)); }
+    100% { transform: translateY(-50%); }
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========= Layout & Container ========= */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ========= Navigation ========= */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+/* ========= Hero Section ========= */
+.player-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.floating-pepe-hero,
+.floating-lasers,
+.floating-hands {
+    position: absolute;
+}
+
+/* ========= About Section ========= */
+.about .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+.about-description {
+    font-size: 2em;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    line-height: 1.4;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========= Show Section ========= */
+.show-content {
+    padding-left: 2rem;
+    margin-left: 2rem;
+}
+
+.show-main-image {
+    width: 115%;
+    height: auto;
+}
+
+/* ========= Clips Section ========= */
+.clip-card iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-width: 100%;
+}
+
+/* ========= Stats ========= */
+.stat-item span {
+    font-family: 'Satoshi', sans-serif;
+    color: #1ae784;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+}
+
+/* ========= Media Queries ========= */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 80px 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 24px;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+        display: block;
+        position: relative;
+        z-index: 1001;
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .hamburger-menu span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 6px 0;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    /* Floating Elements */
+    .floating-pepe-hero,
+    .floating-lasers,
+    .floating-hands {
+        display: none;
+    }
+
+    /* Show Section */
+    .show-content {
+        padding-left: 1rem;
+        margin-left: 1rem;
+        text-align: left;
+    }
+
+    .show-main-image {
+        width: 100% !important;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    /* Stats Grid */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* About Section */
+    .about-description {
+        font-size: 1.5em;
+        padding: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
+
+    /* TV Floating */
+    .floating-tv {
+        width: 25%;
+        height: auto;
+    }
+}
+
+/* ========= Safari Fixes ========= */
+@supports (-webkit-touch-callout: none) {
+    .hero, .clips, .footer {
+        background-attachment: scroll;
+    }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    .hero-grid,
+    .show-grid,
+    .clips-grid {
+        -webkit-overflow-scrolling: touch;
     }
 } 
