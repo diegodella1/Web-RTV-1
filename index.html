@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#1ae784">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Roxom TV </title>
     
     <!-- Import Satoshi font -->
@@ -21,79 +24,238 @@
     
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(-50%); }
+            50% { transform: translateY(calc(-50% + 20px)); }
+            100% { transform: translateY(-50%); }
+        }
+        @media (min-width: 768px) {
+            .floating-lasers {
+                width: 230px !important;
+            }
+        }
+        @supports (-webkit-touch-callout: none) {
+            .hero, .clips, .footer {
+                background-attachment: scroll;
+            }
+        }
+        
+        /* Ajustes para iframes en móvil */
+        .clip-card iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            max-width: 100%;
+            -webkit-aspect-ratio: 16/9;
+        }
+        
+        /* Ajustes para imágenes flotantes en móvil */
+        @media (max-width: 768px) {
+            .floating-pepe-hero,
+            .floating-lasers,
+            .floating-hands {
+                display: none;
+            }
+            
+            .floating-lasers {
+                right: 10px;
+            }
+            
+            .floating-hands {
+                right: 60px;
+                top: calc(50% - 150px);
+            }
+            
+            /* Ajuste de stats para móvil */
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                text-align: center;
+            }
+            
+            /* Ajuste de clips para móvil */
+            .clips-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .clip-content h3 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            /* Ajuste del player para móvil */
+            .player-container {
+                height: auto;
+                max-height: 56.25vw; /* Mantiene proporción 16:9 */
+            }
+            
+            .player-container iframe {
+                height: 100%;
+                max-height: 56.25vw;
+            }
+            
+            /* Ajuste de pepepixel */
+            .pixel-pepe {
+                width: 50%;
+                height: auto;
+                transform: translateY(30px);
+            }
+            
+            /* Ajuste de TV flotante */
+            .floating-tv {
+                width: 25%;
+                height: auto;
+            }
+            
+            /* Ajuste de imagen del show para móvil */
+            .show-main-image {
+                width: 100% !important; /* Sobreescribe el 115% anterior */
+                aspect-ratio: 16/9;
+                object-fit: cover;
+            }
+            
+            /* Estilos del menú móvil */
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 80px 20px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 24px;
+                color: #fff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            
+            .nav-links a:hover {
+                color: #1ae784;
+            }
+            
+            .hamburger-menu {
+                display: block;
+                position: relative;
+                z-index: 1001;
+                border: none;
+                background: none;
+                cursor: pointer;
+                padding: 10px;
+            }
+            
+            .hamburger-menu span {
+                display: block;
+                width: 30px;
+                height: 3px;
+                margin: 6px 0;
+                background-color: #fff;
+                transition: all 0.3s ease;
+            }
+            
+            .hamburger-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(7px, 7px);
+            }
+            
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+        
+        /* Fix para Safari */
+        @supports (-webkit-overflow-scrolling: touch) {
+            .hero-grid,
+            .show-grid,
+            .clips-grid {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Mejoras de rendimiento */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <a href="#" class="logo">
-                <img src="images/logoblanco1.png" alt="Roxom TV Logo" class="nav-logo">
+                <img src="images/logoblanco1.png" alt="Roxom TV Logo" class="nav-logo" style="width: 200px; height: auto;">
             </a>
-            <button class="mobile-menu-button" aria-label="Toggle menu">
+            <button class="hamburger-menu" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <div class="nav-links">
                 <a href="#hero">Home</a>
-                <a href="#show">Show</a>
+                <a href="#show">Shows</a>
                 <a href="#clips">Clips</a>
                 <a href="#about">About</a>
-                <a href="#calendar">Calendar</a>
                 <a href="#mc_embed_signup">Newsletter</a>
+                <a href="sponsors.html">Sponsors</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero" aria-labelledby="hero-title" style="background-image: url('images/backhero.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <section id="hero" class="hero">
         <div class="container hero-grid">
-            <div class="player-container" aria-label="Live stream player">
-                <script src="https://snippet.univtec.com/js/embeb.js?0.5259335623804835" 
-                    data-insight="eyJndWlkIjoiYWVlMmI1ZTktM2UzMS00OTk2LTgzNTQtYjAzN2E2MzBkODkzIiwidHlwZSI6ImNoYW5uZWxzIiwiYWNjb3VudElkIjoiNjZkYTVlNGFkYmMwMTIxOGM4ODRkMTEzIiwiY2xpZW50Ijoicm94b20iLCJhcGkiOiJodHRwczovL2luc2lnaHQtYXBpLWZyYW5rbHkudW5pdnRlYy5jb20vIn0=">
-                </script>
+            <div class="player-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/NaC_UoxMImg?si=Q2TMlH36pARcGrrK&amp;controls=0&amp;autoplay=1&amp;mute=1" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
             </div>
-            <div class="hero-content">
-                <h1 id="hero-title">Roxolid Crypto & Bitcoin News.</h1>
-                <p>We are setting the new standard in crypto news, bringing live 24/7 coverage from <b>San Francisco, London, and Hong Kong</b>.
-                    Our content reaches a global, highly engaged audience passionate about the future of Bitcoin, blockchain, and the crypto economy.
-                </p>
-                <div class="cta-buttons">
-                    <a href="https://x.com/roxomtv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow us on X</a>
-                    <a href="https://youtube.com/@roxomtv" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Subscribe on Youtube</a>
-                </div>
+            <div class="cta-buttons">
+                <a href="https://x.com/roxomtv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow us on X</a>
+                <a href="https://youtube.com/@roxomtv" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Subscribe on YouTube</a>
             </div>
         </div>
-        <img src="images/peperocket.png" alt="Pepe Rocket" class="floating-pepe">
+        <img src="images/peperocket.png" alt="Pepe Rocket" class="floating-pepe-hero" style="animation: float 6s ease-in-out infinite;">
+        <img src="images/cryptolasers.png" alt="Crypto Lasers" class="floating-lasers" style="position: absolute; right: 120px; top: 50%; transform: translateY(-50%); width: 200px; height: auto; z-index: 1; animation: float 6s ease-in-out infinite 2s;">
+        <img src="images/hands.png" alt="Hands" class="floating-hands" style="position: absolute; right: 200px; top: calc(50% - 250px); transform: translateY(-50%); width: 150px; height: auto; z-index: 1; animation: float 6s ease-in-out infinite 4s;">
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about" aria-labelledby="about-title" style="background-image: url('images/backabout.png'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-bottom: 200px;">
+    <section id="about" class="about" aria-labelledby="about-title">
         <div class="container">
             <h2 id="about-title">Who we are</h2>
             <p class="about-description">
-                We didn't come to follow the rules; we came to rewrite them. While other media outlets play at being impartial, we're all in on the future. The future is crypto, and at Roxom TV, we're already broadcasting it in high definition. 
-We're more than a channel; we're the spark in Bitcoin's rocket, the roar of decentralization, the voice unafraid of change. 24/7, we break molds, turn the complex into entertainment, and use humor as a tool to demystify the world of cryptocurrencies. 
-Because here's the truth: the traditional system is broken, and we're not here to fix it-we're here to bury it. Our content isn't for the conformists. It's for the HODLers, the rebels, the ones who believe "to the moon" is just the first step. 
+                We're not here to follow the rules—we're here to rewrite them. At Roxom TV, crypto isn't just the future; it's the revolution, and we're broadcasting it loud and clear.
 
-            </p>
-            <div class="features-grid">
-                <div class="feature" style="border-radius: 15px; overflow: hidden; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <img src="images/hd.png" alt="HD Quality" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto;">
-                    <h3>High Quality</h3>
-                    <p>HD Streaming</p>
-                </div>
-                <div class="feature" style="border-radius: 15px; overflow: hidden; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <img src="images/live.png" alt="Live Content" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto;">
-                    <h3>Live Content</h3>
-                    <p>24/7 Broadcasting</p>
-                </div>
-                <div class="feature" style="border-radius: 15px; overflow: hidden; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <img src="images/community.png" alt="Community" style="width: 96px; height: 96px; object-fit: contain; margin: 1rem auto;">
-                    <h3>Community</h3>
-                    <p>Join Our Network</p>
-                </div>
-            </div>
+We spark Bitcoin's rocket, amplify decentralization, and turn complexity into pure entertainment. This is for the HODLers, the rebels, and the dreamers who see "to the moon" as just the beginning           </p>
         </div>
     </section>
 
@@ -106,7 +268,7 @@ Because here's the truth: the traditional system is broken, and we're not here t
     <section id="show" class="show">
         <div class="container show-grid">
             <div class="show-image">
-                <img src="images/showpic.png" alt="The Blockchain Report" class="show-main-image">
+                <img src="images/showpic.png" alt="The Blockchain Report" class="show-main-image" style="width: 115%; height: auto;">
                 <img src="images/pixelpepe.png" alt="Pixel Pepe" class="pixel-pepe">
             </div>
             <div class="show-content">
@@ -114,20 +276,20 @@ Because here's the truth: the traditional system is broken, and we're not here t
                 <p>Discover the best streaming content with us</p>
                 <div class="stats">
                     <div class="stat-item">
-                        <span class="stat-number">100K+</span>
-                        <span class="stat-label">Followers</span>
+                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Live</span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">M to F</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Shows</span>
+                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">News</span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">24/7</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Available</span>
+                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Available</span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">on demand</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">4K</span>
-                        <span class="stat-label">Quality</span>
+                        <span class="stat-number" style="font-family: 'Satoshi', sans-serif; color: #1ae784; font-size: 1.5rem;">Global news</span>
+                        <span class="stat-label" style="font-family: 'Satoshi', sans-serif; color: #1ae784;">and insider info</span>
                     </div>
                 </div>
             </div>
@@ -140,44 +302,44 @@ Because here's the truth: the traditional system is broken, and we're not here t
             <h2>Featured Clips</h2>
             <div class="clips-grid">
                 <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <img src="images/clip1.jpg" alt="Clip 1">
-                        <span class="clip-duration">10:23</span>
-                    </div>
+                    <iframe 
+                        src="https://www.youtube.com/embed/G_ruKT_w-8Y" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        style="width: 100%; aspect-ratio: 16/9;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                     <div class="clip-content">
-                        <h3>Exclusive Interview: The Future of Streaming</h3>
-                        <div class="clip-meta">
-                            <span class="clip-views">15K views</span>
-                            <span class="clip-date">2 days ago</span>
-                        </div>
+                        <h3>Cypherpunks Unite: Peter Todd and Isabella Santos at Bitcoin MENA</h3>
                     </div>
                 </div>
 
                 <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <img src="images/clip2.jpg" alt="Clip 2">
-                        <span class="clip-duration">15:45</span>
-                    </div>
+                    <iframe 
+                        src="https://www.youtube.com/embed/sgkynXyHUww" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        style="width: 100%; aspect-ratio: 16/9;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                     <div class="clip-content">
-                        <h3>This Week's Show Best Moments</h3>
-                        <div class="clip-meta">
-                            <span class="clip-views">8.5K views</span>
-                            <span class="clip-date">5 days ago</span>
-                        </div>
+                        <h3>Rabble on Nostr, Bitcoin, and the Future of Decentralized Social Media</h3>
                     </div>
                 </div>
 
                 <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <img src="images/clip3.jpg" alt="Clip 3">
-                        <span class="clip-duration">8:17</span>
-                    </div>
+                    <iframe 
+                        src="https://www.youtube.com/embed/OCFxPXcJrpQ" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        style="width: 100%; aspect-ratio: 16/9;"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                     <div class="clip-content">
-                        <h3>Tutorial: How to Optimize Your Streaming Experience</h3>
-                        <div class="clip-meta">
-                            <span class="clip-views">12K views</span>
-                            <span class="clip-date">1 week ago</span>
-                        </div>
+                        <h3>Switzerland's Bitcoin Revolution: Adding BTC to the Constitution?</h3>
                     </div>
                 </div>
             </div>
@@ -227,42 +389,6 @@ Because here's the truth: the traditional system is broken, and we're not here t
         </div>
     </section>
 
-    <!-- Calendar Section -->
-    <section id="calendar" class="calendar" aria-labelledby="calendar-title" style="background-image: url('images/backupcoming.png'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-        <div class="container">
-            <h2 id="calendar-title">Upcoming Shows</h2>
-            <div class="calendar-list" style="position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-                <div class="calendar-item" role="article">
-                    <time class="date" datetime="2024-03-15">
-                        <span class="day">15</span>
-                        <span class="month">MAR</span>
-                    </time>
-                    <div class="event-info">
-                        <h3>Show Title</h3>
-                        <p>8:00 PM - 10:00 PM</p>
-                    </div>
-                    <a href="https://www.youtube.com/@roxomtv?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-reminder">Reminder</a>
-                </div>
-
-                <div class="calendar-item" role="article">
-                    <time class="date" datetime="2024-03-16">
-                        <span class="day">16</span>
-                        <span class="month">MAR</span>
-                    </time>
-                    <div class="event-info">
-                        <h3>Special Event</h3>
-                        <p>9:00 PM - 11:00 PM</p>
-                    </div>
-                    <a href="https://www.youtube.com/@roxomtv?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-reminder">Reminder</a>
-                </div>
-
-                <div class="calendar-cat" style="position: absolute; left: 50%; bottom: -80%; transform: translate(-50%, 0); z-index: 2; max-width: 200px;">
-                    <img src="images/cat.png" alt="Calendar Cat" class="cat-image" style="width: 100%; height: auto;">
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Social Menu -->
     <div class="social-menu" role="navigation" aria-label="Social media links">
         <a href="https://linkedin.com/company/roxomtv" class="social-item" aria-label="Follow us on LinkedIn" target="_blank" rel="noopener noreferrer">
@@ -290,14 +416,15 @@ Because here's the truth: the traditional system is broken, and we're not here t
         <div class="container footer-grid">
             <div class="footer-col">
                 <img src="images/logoblanco1.png" alt="Roxom TV Logo" class="footer-logo">
-                <p>Your favorite streaming destination</p>
+                <p>Roxolid Bitcoin & Crypto news 24/7. Anytime, anywhere.</p>
             </div>
             <div class="footer-col">
                 <h3>Links</h3>
                 <a href="#hero">Home</a>
-                <a href="#show">Show</a>
+                <a href="#show">Shows</a>
                 <a href="#clips">Clips</a>
                 <a href="#about">About</a>
+                <a href="sponsors.html">Sponsors</a>
             </div>
             <div class="footer-col">
                 <h3>Follow Us</h3>
@@ -332,26 +459,26 @@ Because here's the truth: the traditional system is broken, and we're not here t
     <script src="js/main.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const hamburger = document.querySelector('.hamburger-menu');
             const navLinks = document.querySelector('.nav-links');
-            const navLinksItems = document.querySelectorAll('.nav-links a');
+            const menuLinks = document.querySelectorAll('.nav-links a');
 
-            // Toggle menu when clicking the hamburger button
-            mobileMenuButton.addEventListener('click', function() {
+            hamburger.addEventListener('click', function() {
                 this.classList.toggle('active');
                 navLinks.classList.toggle('active');
                 document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
             });
 
-            // Close menu when clicking a link
-            navLinksItems.forEach(link => {
+            menuLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileMenuButton.classList.remove('active');
+                    hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
                     document.body.style.overflow = '';
                 });
             });
         });
     </script>
+
+    <img src="images/peperocket.png" alt="Pepe Rocket" class="floating-pepe-left">
 </body>
 </html> 
